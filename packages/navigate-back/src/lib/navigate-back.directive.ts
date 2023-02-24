@@ -1,7 +1,7 @@
-import { Directive, Input, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { Directive, HostListener, Input, OnDestroy } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 import { VngNavigateBackParms } from './navigate-back.interfaces';
+import { VngNavigateBackService } from './navigate-back.service';
 
 @Directive({
   selector: '[vngNavigateBack]'
@@ -10,18 +10,26 @@ export class VngNavigateBackDirective implements OnDestroy {
   @Input()
   set vngNavigateBack(params: VngNavigateBackParms) {
     this.params = params;
-    this.canNavigateBack = this.router.navigated;
   }
-
-  canNavigateBack = false;
 
   private params?: VngNavigateBackParms;
   private destroySubject$ = new Subject<void>();
-
-  constructor(private router: Router) {}
+  constructor(private service: VngNavigateBackService) {}
 
   ngOnDestroy(): void {
     this.destroySubject$.next();
     this.destroySubject$.complete();
+  }
+
+  @HostListener('click', ['$event.target'])
+  onClick() {
+    this.service
+      .navigateBack()
+      .pipe(takeUntil(this.destroySubject$))
+      .subscribe({
+        error: () => {
+          console.log('no se puede', this.params);
+        }
+      });
   }
 }

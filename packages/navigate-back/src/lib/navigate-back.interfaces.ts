@@ -1,9 +1,8 @@
 export class VngNavigateBackConfig {}
 
-export interface VngNavigateBackParms {
-  fallbackNavigate?: string;
-  fallbackNavigateByUrl?: string;
-  fallbackClick?: () => void;
-}
+export type VngNavigateBackParms =
+  | string
+  | (string | number)[]
+  | (() => unknown);
 
 export type VngNavigateBackFallback = () => void;

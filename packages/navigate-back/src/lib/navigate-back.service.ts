@@ -8,7 +8,7 @@ export class VngNavigateBackService {
   constructor(private router: Router, private location: Location) {}
 
   navigateBack(): Observable<void> {
-    return of().pipe(
+    return of(undefined).pipe(
       tap(() => {
         if (this.router.navigated) {
           this.location.back();
