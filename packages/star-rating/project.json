@@ -1,0 +1,50 @@
+{
+  "name": "star-rating",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/star-rating/src",
+  "prefix": "vngular",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "packages/star-rating/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/star-rating/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "packages/star-rating/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/star-rating/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "packages/star-rating/**/*.ts",
+          "packages/star-rating/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

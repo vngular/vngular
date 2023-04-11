@@ -1,0 +1,9 @@
+<form [formGroup]="form">
+  <vng-star-rating formControlName="rating" [length]="5"></vng-star-rating>
+</form>
+
+<ng-template #templateRef1>0</ng-template>
+<ng-template #templateRef2>x</ng-template>
+<ng-template #templateRef3>1</ng-template>
+
+{{ form.value | json }}
