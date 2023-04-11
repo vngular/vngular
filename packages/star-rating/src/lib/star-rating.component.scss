@@ -1,0 +1,43 @@
+:host {
+  --vng-config-star-color: lightslategray;
+  --vng-config-star-selected-color: goldenrod;
+
+  display: block;
+  width: 100%;
+
+  .vng-star-rating-container {
+    display: flex;
+    flex-direction: row;
+
+    .vng-star-rating-item {
+      --vng-star-color: var(--vng-config-star-color);
+      cursor: pointer;
+
+      &.vng-star-rating-item-selected {
+        --vng-star-color: var(--vng-config-star-selected-color);
+      }
+    }
+
+    &:hover {
+      .vng-star-rating-item {
+        --vng-star-color: var(--vng-config-star-selected-color);
+      }
+
+      .vng-star-rating-item:hover ~ .vng-star-rating-item {
+        --vng-star-color: var(--vng-config-star-color);
+      }
+    }
+  }
+
+  svg {
+    color: var(--vng-star-color);
+    display: block;
+    width: 100%;
+    max-width: 64px;
+
+    &:hover {
+      transform: scale(1.1);
+      transition: transform 0.1s;
+    }
+  }
+}
