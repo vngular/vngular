@@ -14,7 +14,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@vngular/navigate-back": ["packages/navigate-back/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
